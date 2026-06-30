@@ -89,7 +89,7 @@ class ExtractedCandidate(BaseModel):
 
     data: Candidate
     source_name: str
-    source_type: str  # "csv" | "resume"
+    source_type: str  # "csv" | "ats" | "resume"
 
 
 class ProjectionFieldConfig(BaseModel):

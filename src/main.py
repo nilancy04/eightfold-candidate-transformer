@@ -10,6 +10,7 @@ from pathlib import Path
 
 from common import candidate_to_output_profile
 from confidence import apply_confidence
+from extractors.ats_extractor import ATSExtractor
 from extractors.csv_extractor import CSVExtractor
 from extractors.resume_extractor import ResumeExtractor
 from matcher import match_candidates
@@ -47,6 +48,23 @@ def _collect_csv_records(csv_path: Path | None) -> list[ExtractedCandidate]:
         return CSVExtractor().extract(csv_path)
     except Exception as exc:
         logger.warning("CSV extraction failed for %s: %s", csv_path, exc)
+        return []
+
+
+def _collect_ats_records(ats_path: Path | None) -> list[ExtractedCandidate]:
+    """Extract all candidates from an ATS JSON file."""
+    if ats_path is None:
+        return []
+
+    if not ats_path.exists():
+        logger.warning("ATS file not found: %s; skipping ATS source", ats_path)
+        return []
+
+    logger.info("Stage 1b: ATS extraction")
+    try:
+        return ATSExtractor().extract(ats_path)
+    except Exception as exc:
+        logger.warning("ATS extraction failed for %s: %s", ats_path, exc)
         return []
 
 
@@ -144,21 +162,24 @@ def run_pipeline(
     resumes_dir: Path | None,
     config_path: Path | None,
     output_path: Path = DEFAULT_OUTPUT,
+    ats_path: Path | None = None,
 ) -> int:
     """Execute the multi-candidate transformation pipeline."""
     logger.info("Pipeline started")
 
     csv_records = _collect_csv_records(csv_path)
+    ats_records = _collect_ats_records(ats_path)
     resume_records = _collect_resume_records(resume_path, resumes_dir)
-    all_records = csv_records + resume_records
+    all_records = csv_records + ats_records + resume_records
 
     if not all_records:
         logger.warning("No data extracted from any source; output will not be written")
         return 1
 
     logger.info(
-        "Stage 3: Candidate matching (%d CSV + %d resume record(s))",
+        "Stage 3: Candidate matching (%d CSV + %d ATS + %d resume record(s))",
         len(csv_records),
+        len(ats_records),
         len(resume_records),
     )
     matched_groups = match_candidates(all_records)
@@ -200,6 +221,7 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument("--csv", dest="csv_path", help="Path to candidate CSV file")
+    parser.add_argument("--ats", dest="ats_path", help="Path to ATS JSON export file")
     parser.add_argument("--resume", dest="resume_path", help="Path to a single resume PDF")
     parser.add_argument(
         "--resumes",
@@ -222,17 +244,18 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     csv_path = _resolve_path(args.csv_path)
+    ats_path = _resolve_path(args.ats_path)
     resume_path = _resolve_path(args.resume_path)
     resumes_dir = _resolve_path(args.resumes_dir)
     config_path = _resolve_path(args.config_path)
     output_path = Path(args.output_path)
 
-    if not csv_path and not resume_path and not resumes_dir:
-        logger.warning("At least one of --csv, --resume, or --resumes must be provided")
+    if not csv_path and not ats_path and not resume_path and not resumes_dir:
+        logger.warning("At least one of --csv, --ats, --resume, or --resumes must be provided")
         parser.print_help()
         return 1
 
-    return run_pipeline(csv_path, resume_path, resumes_dir, config_path, output_path)
+    return run_pipeline(csv_path, resume_path, resumes_dir, config_path, output_path, ats_path=ats_path)
 
 
 if __name__ == "__main__":

@@ -1,39 +1,55 @@
 # Eightfold Candidate Transformer
 
-A production-ready Python pipeline that ingests candidate data from **multiple CSV rows** and **multiple resume PDFs**, matches records across sources, normalizes and merges conflicting information, tracks full provenance, assigns confidence scores, and exports an array of canonical candidate profiles in JSON.
+A robust and extensible Python pipeline that ingests candidate data from **multiple CSV rows**, **ATS JSON exports**, and **multiple resume PDFs**, matches records across sources, normalizes and merges conflicting information, tracks full provenance, assigns confidence scores, and exports an array of canonical candidate profiles in JSON.
+The system is designed to be deterministic, explainable, extensible, and resilient to malformed or incomplete inputs.
 
 ---
 
 ## Project Overview
 
-Recruiting teams receive candidate data from both structured exports (CSV) and unstructured documents (PDF resumes). This pipeline:
+Recruiting teams receive candidate data from structured exports (CSV, ATS JSON) and unstructured documents (PDF resumes). This pipeline:
 
-1. Extracts **one record per CSV row** and **one record per resume PDF**
+1. Extracts **one record per CSV row**, **one record per ATS JSON entry**, and **one record per resume PDF**
 2. **Normalizes** emails, phones, skills, and dates — tracking every decision as provenance
-3. **Matches** records across sources: email → phone → name (strict priority)
+3. **Matches** records across all sources: email → phone → name (strict priority)
 4. **Merges** matched records using confidence-based conflict resolution
 5. **Validates** all fields: email format, E.164 phones, confidence ranges, required fields
 6. **Exports** `output/profiles.json` — an array of canonical candidate profiles
 
 Built with Python 3.11, pandas, Pydantic v2, pdfplumber, phonenumbers, and python-dateutil.
 
+## Assignment Requirements Coverage
+
+-  Structured source 1: Recruiter CSV export
+-  Structured source 2: ATS JSON export (field mapping: candidateName, mail, mobile, designation, organization, skills)
+-  Unstructured source: Resume PDF extraction
+-  Canonical candidate profile generation
+-  Cross-source matching and deduplication (CSV ↔ ATS ↔ Resume)
+-  Email, phone, skill, and date normalization
+-  Provenance tracking for every field
+-  Confidence scoring (CSV=0.95, ATS=0.90, Resume=0.85)
+-  Configurable output projection
+-  Schema validation
+-  Graceful degradation on malformed or missing inputs
+-  Stress tested on 10,000+ candidate records
+
 ---
 
 ## Architecture
 
 ```
-┌─────────────────┐     ┌──────────────────────┐
-│  CSV (multi-row)│     │  Resume folder (PDFs) │
-└────────┬────────┘     └──────────┬───────────┘
-         │                         │
-         ▼                         ▼
-┌─────────────────┐     ┌──────────────────────┐
-│  CSVExtractor   │     │  ResumeExtractor     │
-│  (adapter)      │     │  (adapter)           │
-└────────┬────────┘     └──────────┬───────────┘
-         │                         │
-         └──────────┬──────────────┘
-                    ▼
+┌─────────────────┐  ┌──────────────────┐  ┌──────────────────────┐
+│  CSV (multi-row)│  │  ATS JSON export │  │  Resume folder (PDFs)│
+└────────┬────────┘  └────────┬─────────┘  └──────────┬───────────┘
+         │                    │                         │
+         ▼                    ▼                         ▼
+┌─────────────────┐  ┌──────────────────┐  ┌──────────────────────┐
+│  CSVExtractor   │  │  ATSExtractor    │  │  ResumeExtractor     │
+│  (adapter)      │  │  (adapter)       │  │  (adapter)           │
+└────────┬────────┘  └────────┬─────────┘  └──────────┬───────────┘
+         │                    │                         │
+         └────────────────────┴─────────────────────────┘
+                              │
            ┌────────────────┐
            │  Normalizers   │
            │ email/phone/   │
@@ -89,7 +105,9 @@ eightfold-candidate-transformer/
 │   ├── projector.py            # Config-driven output projection
 │   ├── validator.py            # Email, phone, confidence, and schema validation
 │   ├── extractors/
+│   │   ├── __init__.py
 │   │   ├── base.py             # BaseExtractor adapter interface
+│   │   ├── ats_extractor.py    # ATS JSON extraction + field mapping
 │   │   ├── csv_extractor.py    # Multi-row CSV extraction
 │   │   └── resume_extractor.py # Single + folder PDF extraction (regex)
 │   └── normalizers/
@@ -98,18 +116,22 @@ eightfold-candidate-transformer/
 │       ├── skill_normalizer.py # Alias mapping, dedup + provenance
 │       └── date_normalizer.py  # YYYY-MM normalization
 ├── input/
+│   ├── ats.json                # Sample ATS JSON export
 │   ├── candidate.csv           # Sample multi-candidate CSV
-│   ├── config.json             # Optional output projection config
-│   ├── resume.pdf              # Sample resume PDF
-│   └── resumes/                # Folder for additional resume PDFs
+│   ├── config.json             # Optional projection config
+│   ├── resume.pdf              # Sample resume PDF (152 KB)
+│   └── resumes/
+│       └── .gitkeep        # Folder for additional resume PDFs
 ├── output/
 │   ├── sample_profile.json     # Example single-candidate output
 │   └── sample_profiles.json    # Example multi-candidate output
 ├── scripts/
 │   └── generate_stress_csv.py  # Generates 10,000-row stress test CSV
-├── tests/                      # 76 tests (unit + integration + stress)
+├── tests/                      # 107 tests (unit + integration + stress)
 │   ├── conftest.py
 │   ├── helpers.py
+│   ├── test_ats_extractor.py
+│   ├── test_ats_integration.py
 │   ├── test_csv_extractor.py
 │   ├── test_email_normalizer.py
 │   ├── test_experience_extractor.py
@@ -149,6 +171,27 @@ pip install -r requirements.txt
 
 ## Usage
 
+### ATS JSON only
+
+```bash
+python3 src/main.py --ats input/ats.json
+```
+
+### CSV + ATS (most common)
+
+```bash
+python3 src/main.py --csv input/candidate.csv --ats input/ats.json
+```
+
+### CSV + ATS + resume folder (all three sources)
+
+```bash
+python3 src/main.py \
+  --csv input/candidate.csv \
+  --ats input/ats.json \
+  --resumes input/resumes/
+```
+
 ### CSV only (multiple candidates)
 
 ```bash
@@ -172,6 +215,7 @@ python3 src/main.py --csv input/candidate.csv --resume input/resume.pdf
 ```bash
 python3 src/main.py \
   --csv input/candidate.csv \
+  --ats input/ats.json \
   --resumes input/resumes/ \
   --config input/config.json
 ```
@@ -187,10 +231,14 @@ python3 src/main.py --csv input/candidate.csv --output output/my_profiles.json
 ## Example Commands
 
 ```bash
-# Run the full pipeline
-python3 src/main.py --csv input/candidate.csv --resumes input/resumes/
+# Run the full pipeline (CSV + ATS + resumes)
+python3 src/main.py --csv input/candidate.csv --ats input/ats.json --resumes input/resumes/
+
+# ATS only
+python3 src/main.py --ats input/ats.json
 
 # Run all tests
+python3 scripts/generate_stress_csv.py   # generate stress dataset first
 pytest tests/ -v
 
 # Run tests (excluding slow stress test)
@@ -213,6 +261,21 @@ python3 src/main.py --csv input/candidate_10000.csv --output output/profiles.jso
 name,email,phone,current_company,title
 John Doe,john.doe@gmail.com,9999999999,Google,Software Engineer
 Priya Sharma,priya.sharma@gmail.com,+91 9876543210,Microsoft,Data Analyst
+```
+
+**`input/ats.json`** — ATS export with non-canonical field names:
+
+```json
+[
+  {
+    "candidateName": "Priya Sharma",
+    "mail": "priya.sharma@gmail.com",
+    "mobile": "+91 9876543210",
+    "designation": "Senior Software Engineer",
+    "organization": "Infosys",
+    "skills": ["Python", "Java", "ReactJS"]
+  }
+]
 ```
 
 **`input/resumes/`** — one PDF per candidate:
@@ -290,6 +353,24 @@ This is enforced at two levels:
 
 ---
 
+## Complexity Analysis
+
+| Stage | Complexity |
+|--------|------------|
+| CSV Extraction | O(n) |
+| ATS Extraction | O(n) |
+| Resume Extraction | O(r) |
+| Normalization | O(n) |
+| Matching (indexed) | O(n) |
+| Merge | O(n) |
+| Validation | O(n) |
+
+Where:
+- n = number of candidate records
+- r = number of resume PDFs
+
+The matching engine uses hash indexes and Union-Find grouping, allowing the pipeline to scale efficiently to thousands of candidates.
+
 ## Conflict Resolution Strategy
 
 When multiple sources provide data for the same candidate:
@@ -304,6 +385,25 @@ All decisions are recorded in the `provenance` array.
 
 ---
 
+## ATS JSON Field Mapping
+
+The ATS extractor maps non-canonical ATS field names to the canonical pipeline schema:
+
+| ATS Field | Canonical Field | Notes |
+|-----------|----------------|-------|
+| `candidateName` | `full_name` | Direct string mapping |
+| `mail` | `emails` | Lowercased + validated |
+| `mobile` | `phones` | Normalized to E.164 |
+| `designation` | `experience[].title` | Packed into ExperienceEntry |
+| `organization` | `experience[].company` | Packed into ExperienceEntry |
+| `skills` | `skills[]` | Alias-normalized (e.g. ReactJS → React) |
+
+Skills may be provided as a JSON array **or** a comma-separated string — both are handled.
+
+All ATS provenance entries carry `"method": "ATS field mapping"` for full traceability.
+
+---
+
 ## Confidence Scoring
 
 ### Source Confidence
@@ -311,6 +411,7 @@ All decisions are recorded in the `provenance` array.
 | Source | Base score |
 |--------|-----------|
 | CSV | 0.95 |
+| ATS | 0.90 |
 | Resume | 0.85 |
 | Notes (future) | 0.70 |
 
@@ -436,6 +537,19 @@ pytest tests/test_stress.py -v -s
 6. Confidence scores are deterministic — identical inputs always produce identical outputs.
 
 ---
+## Key Design Decisions
+
+### Adapter Pattern for Source Extensibility
+Each source implements the `BaseExtractor` interface. New sources can be integrated without modifying the core pipeline.
+
+### Strict Identity Matching Policy
+Email is treated as the strongest identity signal. Candidates with conflicting emails are never merged, even if names or phone numbers match.
+
+### Provenance-First Architecture
+Every extraction, normalization, and merge decision is recorded in provenance metadata, making the system fully explainable and auditable.
+
+### Deterministic Processing
+Identical inputs always produce identical outputs, ensuring reproducibility and simplifying debugging.
 
 ## Future Improvements
 
@@ -444,12 +558,10 @@ pytest tests/test_stress.py -v -s
 - Configurable phone region via CLI flag
 - Database persistence and profile versioning
 - REST API wrapper for streaming ingestion
-- Additional extractors: LinkedIn, ATS exports, recruiter notes
+- Additional extractors: LinkedIn profiles, recruiter notes, CRM exports
 - Parallel extraction for large resume folders
 - Docker image for one-command deployment
 
 ---
 
-## License
 
-MIT

@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 SOURCE_CONFIDENCE: dict[str, float] = {
     "csv": 0.95,
+    "ats": 0.90,
     "resume": 0.85,
     "notes": 0.70,
 }

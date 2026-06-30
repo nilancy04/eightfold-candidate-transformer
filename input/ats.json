@@ -1,0 +1,41 @@
+[
+  {
+    "candidateName": "Priya Sharma",
+    "mail": "priya.sharma@gmail.com",
+    "mobile": "+91 9876543210",
+    "designation": "Senior Software Engineer",
+    "organization": "Infosys",
+    "skills": [
+      "Python",
+      "Java",
+      "ReactJS",
+      "Machine Learning"
+    ]
+  },
+  {
+    "candidateName": "John Doe",
+    "mail": "john@gmail.com",
+    "mobile": "9257603310",
+    "designation": "Full Stack Developer Intern",
+    "organization": "Sikar Infotech",
+    "skills": [
+      "JavaScript",
+      "Node.js",
+      "React",
+      "AWS"
+    ]
+  },
+  {
+    "candidateName": "Ananya Verma",
+    "mail": "ananya.verma@example.com",
+    "mobile": "9812345678",
+    "designation": "Data Scientist",
+    "organization": "Amazon",
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "SQL",
+      "AWS"
+    ]
+  }
+]
