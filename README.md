@@ -37,59 +37,113 @@ Built with Python 3.11, pandas, Pydantic v2, pdfplumber, phonenumbers, and pytho
 
 ## Architecture
 
-```
-┌─────────────────┐  ┌──────────────────┐  ┌──────────────────────┐
-│  CSV (multi-row)│  │  ATS JSON export │  │  Resume folder (PDFs)│
-└────────┬────────┘  └────────┬─────────┘  └──────────┬───────────┘
-         │                    │                         │
-         ▼                    ▼                         ▼
-┌─────────────────┐  ┌──────────────────┐  ┌──────────────────────┐
-│  CSVExtractor   │  │  ATSExtractor    │  │  ResumeExtractor     │
-│  (adapter)      │  │  (adapter)       │  │  (adapter)           │
-└────────┬────────┘  └────────┬─────────┘  └──────────┬───────────┘
-         │                    │                         │
-         └────────────────────┴─────────────────────────┘
-                              │
-           ┌────────────────┐
-           │  Normalizers   │
-           │ email/phone/   │
-           │ skill/date     │
-           └────────┬───────┘
-                    ▼
-           ┌────────────────┐
-           │  Matcher       │
-           │ email→phone→   │
-           │ name (indexed) │
-           └────────┬───────┘
-                    ▼
-           ┌────────────────┐
-           │  Merge Engine  │
-           │ (confidence)   │
-           └────────┬───────┘
-                    ▼
-           ┌────────────────┐
-           │  Confidence    │
-           │  Scoring       │
-           └────────┬───────┘
-                    ▼
-           ┌────────────────┐
-           │  Validator     │
-           └────────┬───────┘
-                    ▼
-           ┌────────────────┐
-           │  Projector     │
-           │  (optional)    │
-           └────────┬───────┘
-                    ▼
-           ┌────────────────┐
-           │ profiles.json  │
-           │  [profile, …]  │
-           └────────────────┘
-```
 
-New sources (LinkedIn, ATS, notes) can be added by implementing the `BaseExtractor` adapter — no pipeline changes needed.
+┌──────────────────────────────────────────────────────────────┐
+│                         INPUT SOURCES                        │
+├──────────────────────────────────────────────────────────────┤
+│  CSV Export            ATS JSON          Resume PDFs         │
+│ (structured)         (structured)      (unstructured)        │
+└──────────────┬──────────────┬───────────────────────┬───────-┘
+               │              │                       │
+               ▼              ▼                       ▼
 
----
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  CSVExtractor   │  │  ATSExtractor   │  │ResumeExtractor  │
+│   (Adapter)     │  │   (Adapter)     │  │   (Adapter)     │
+└────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+         └────────────────────┼────────────────────┘
+                              ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                  Canonical Candidate Model                   │
+│          Convert all sources to a common schema              │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                     Normalization Layer                      │
+├──────────────────────────────────────────────────────────────┤
+│ • Email normalization (lowercase, deduplication)             │
+│ • Phone normalization (E.164 format)                         │
+│ • Skill canonicalization (ReactJS → React)                   │
+│ • Date normalization                                         │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                      Matching Engine                         │
+├──────────────────────────────────────────────────────────────┤
+│ Matching priority:                                           │
+│ 1. Email                                                     │
+│ 2. Phone                                                     │
+│ 3. Name                                                      │
+│                                                              │
+│ Uses indexed lookups for scalable matching.                  │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                    Merge & Conflict Resolver                 │
+├──────────────────────────────────────────────────────────────┤
+│ • Merge records belonging to same candidate                  │
+│ • Resolve conflicting values using source confidence         │
+│ • Deduplicate skills, emails, and phones                     │
+└──────────────────────────────┬──────────────────────────────-┘  
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                    Provenance Tracker                        │
+├──────────────────────────────────────────────────────────────┤
+│ Track for every field:                                       │
+│ • Source of value                                            │
+│ • Extraction method                                          │
+│ • Normalization decisions                                    │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                    Confidence Engine                         │
+├──────────────────────────────────────────────────────────────┤
+│ Assign confidence scores based on:                           │
+│ • Source reliability                                         │
+│ • Data completeness                                          │
+│ • Cross-source agreement                                     │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                      Validation Layer                        │
+├──────────────────────────────────────────────────────────────┤
+│ • Required field checks                                      │
+│ • Email validation                                           │
+│ • Phone validation                                           │
+│ • Confidence range validation                                │
+│ • Duplicate detection                                        │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                   Projection / Output Layer                  │
+├──────────────────────────────────────────────────────────────┤
+│ Runtime configurable output:                                 │
+│ • Select fields                                              │
+│ • Rename fields                                              │
+│ • Include/Exclude confidence                                 │
+│ • Handle missing values                                      │
+└──────────────────────────────┬──────────────────────────────-┘
+                               ▼
+
+┌──────────────────────────────────────────────────────────────┐
+│                      OUTPUT PROFILES                         │
+│                      profiles.json                           │
+└──────────────────────────────────────────────────────────────┘
+
+
+Extensibility:
+New sources (LinkedIn, GitHub, recruiter notes, etc.) can be
+added by implementing the BaseExtractor interface without
+modifying the downstream pipeline.
+
 
 ## Folder Structure
 
