@@ -1,0 +1,1034 @@
+[
+  {
+    "candidate_id": "40a437ea-9c60-4cc7-a107-53caa7ef27f9",
+    "full_name": "John Doe",
+    "emails": [
+      "john.doe@gmail.com"
+    ],
+    "phones": [
+      "+919999999999"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Google",
+        "title": "Software Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "d10db3b3-6bac-4706-b8d4-077cf328684d",
+    "full_name": "Priya Sharma",
+    "emails": [
+      "priya.sharma@gmail.com"
+    ],
+    "phones": [
+      "+919876543210"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Microsoft",
+        "title": "Data Analyst",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "a4fcabe7-cbd2-4ad8-a19f-454e72d4eaff",
+    "full_name": "Rahul Verma",
+    "emails": [
+      "RAHUL.VERMA@gmail.com"
+    ],
+    "phones": [
+      "+919123456780"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Amazon",
+        "title": "Backend Developer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "df9884a1-8419-40e8-a71d-816fe313653f",
+    "full_name": "Sneha Kapoor",
+    "emails": [
+      "sneha.kapoor@gmail.com"
+    ],
+    "phones": [
+      "+919988776655"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Infosys",
+        "title": "AI/ML Intern",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "205b6930-fa29-452c-9354-c386ef3d80fc",
+    "full_name": "Aman Gupta",
+    "emails": [
+      "aman.gupta@gmail.com",
+      "akash.jain@gmail.com",
+      "aditi.rao@gmail.com"
+    ],
+    "phones": [
+      "+919765432109"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Adobe",
+        "title": "Frontend Developer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      },
+      {
+        "company": "Cognizant",
+        "title": "Backend Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      },
+      {
+        "company": "Infosys",
+        "title": "AI/ML Intern",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "673984c4-5714-4841-875a-1ce32611197d",
+    "full_name": "Neha Singh",
+    "emails": [
+      "neha.singh@gmail.com"
+    ],
+    "phones": [],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Accenture",
+        "title": "Cloud Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "ef491b25-8a77-4edb-a871-5d8630218fc3",
+    "full_name": "Rohit Kumar",
+    "emails": [
+      "rohit.kumar@gmail.com"
+    ],
+    "phones": [
+      "+919876541230"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "TCS",
+        "title": "Full Stack Developer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "9ef07ef7-823f-4854-8bc6-aa9e044319a3",
+    "full_name": "Karan Malhotra",
+    "emails": [
+      "karan@gmail.com"
+    ],
+    "phones": [],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Wipro",
+        "title": "Data Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "b60c23d5-8490-433e-b33e-ee13cbc44b9f",
+    "full_name": "Pooja Mehta",
+    "emails": [
+      "pooja.mehta@gmail.com"
+    ],
+    "phones": [
+      "+919876509876"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": null,
+        "title": "Software Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "7c5a7271-0a66-460f-b000-54e52197fbf3",
+    "full_name": "Arjun Nair",
+    "emails": [],
+    "phones": [
+      "+919988123456"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Paytm",
+        "title": "ML Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.88,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "4a5231dc-3242-4298-8e09-990a4cb2c0b9",
+    "full_name": null,
+    "emails": [
+      "emptyname@gmail.com"
+    ],
+    "phones": [
+      "+919876549999"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "IBM",
+        "title": "DevOps Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.87,
+    "provenance": [
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "13e54189-f889-47d1-97ec-236aeec894b0",
+    "full_name": "Meera Iyer",
+    "emails": [
+      "meera.iyer@gmail.com"
+    ],
+    "phones": [
+      "+919876541111"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Capgemini",
+        "title": null,
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "8178a5f9-dceb-440a-8eb5-5e214ff0a31b",
+    "full_name": "Test User",
+    "emails": [
+      "test.user@gmail.com"
+    ],
+    "phones": [],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Unknown",
+        "title": "Unknown",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "bf91cf1f-7244-4970-9636-6abe01fee0e3",
+    "full_name": "Extra Spaces",
+    "emails": [
+      "extraspaces@gmail.com"
+    ],
+    "phones": [
+      "+919876548888"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Google",
+        "title": "SDE Intern",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "372ee878-5a27-4043-983c-85a7a0841667",
+    "full_name": "Case Test",
+    "emails": [
+      "CASE.TEST@GMAIL.COM"
+    ],
+    "phones": [
+      "+919876547777"
+    ],
+    "skills": [],
+    "experience": [
+      {
+        "company": "Meta",
+        "title": "Software Engineer",
+        "start_date": null,
+        "end_date": null,
+        "description": null
+      }
+    ],
+    "education": [],
+    "overall_confidence": 0.89,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "phones",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "experience",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  },
+  {
+    "candidate_id": "a5e22a5b-bb93-4b53-b951-0ba5e9dab805",
+    "full_name": "Null Test",
+    "emails": [
+      "nulltest@gmail.com"
+    ],
+    "phones": [],
+    "skills": [],
+    "experience": [],
+    "education": [],
+    "overall_confidence": 0.94,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "csv column mapping"
+      },
+      {
+        "field": "full_name",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      },
+      {
+        "field": "emails",
+        "source": "candidate.csv",
+        "method": "merge conflict resolution"
+      }
+    ]
+  }
+]

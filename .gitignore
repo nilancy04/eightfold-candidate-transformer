@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Test cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Runtime-generated pipeline outputs (kept: sample_*.json for reviewers)
+output/profile.json
+output/profiles.json
+
+# Large generated test datasets
+input/candidate_10000.csv

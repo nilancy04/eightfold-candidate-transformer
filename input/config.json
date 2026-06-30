@@ -1,0 +1,29 @@
+{
+  "fields": [
+    {
+      "path": "full_name"
+    },
+    {
+      "path": "primary_email",
+      "from": "emails[0]"
+    },
+    {
+      "path": "primary_phone",
+      "from": "phones[0]"
+    },
+    {
+      "path": "skill_names",
+      "from": "skills[].name"
+    },
+    {
+      "path": "current_role",
+      "from": "experience[0].title"
+    },
+    {
+      "path": "current_company",
+      "from": "experience[0].company"
+    }
+  ],
+  "include_confidence": true,
+  "on_missing": "null"
+}

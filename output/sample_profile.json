@@ -1,0 +1,24 @@
+{
+  "full_name": "Priya Sharma",
+  "primary_email": "priya.sharma@example.com",
+  "primary_phone": "+919876543210",
+  "skill_names": [
+    "Python",
+    "Java",
+    "JavaScript",
+    "React",
+    "C++",
+    "Machine Learning"
+  ],
+  "current_role": "Senior Software Engineer",
+  "current_company": "Infosys",
+  "overall_confidence": 0.86,
+  "field_confidence": {
+    "full_name": 0.95,
+    "emails": 0.93,
+    "phones": 0.9,
+    "skills": 0.84,
+    "experience": 0.78,
+    "education": 0.76
+  }
+}

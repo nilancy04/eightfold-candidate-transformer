@@ -1,0 +1,40 @@
+name,email,phone,current_company,title
+John Doe,john.doe@gmail.com,9999999999,Google,Software Engineer
+
+Priya Sharma,priya.sharma@gmail.com,+91 9876543210,Microsoft,Data Analyst
+
+Rahul Verma,RAHUL.VERMA@gmail.com,9123456780,Amazon,Backend Developer
+
+Sneha Kapoor,sneha.kapoor@gmail.com,9988776655,Infosys,AI/ML Intern
+
+Aman Gupta,aman.gupta@gmail.com,9765432109,Adobe,Frontend Developer
+
+John Doe,john.doe@gmail.com,9999999999,Google,Software Engineer
+
+Neha Singh,neha.singh@gmail.com,123,Accenture,Cloud Engineer
+
+Rohit Kumar,rohit.kumar@gmail.com,+91-9876541230,TCS,Full Stack Developer
+
+Karan Malhotra,karan@gmail.com,,Wipro,Data Engineer
+
+Pooja Mehta,pooja.mehta@gmail.com,9876509876,,Software Engineer
+
+Arjun Nair,,9988123456,Paytm,ML Engineer
+
+,emptyname@gmail.com,9876549999,IBM,DevOps Engineer
+
+Meera Iyer,meera.iyer@gmail.com,9876541111,Capgemini,
+
+Akash Jain,akash.jain@gmail.com,+91 97654 32109,Cognizant,Backend Engineer
+
+Aditi Rao,aditi.rao@gmail.com,9765432109,Infosys,AI/ML Intern
+
+Rahul Verma,rahul.verma@gmail.com,9123456780,Amazon,Backend Developer
+
+Test User,test.user@gmail.com,0000000000,Unknown,Unknown
+
+Extra Spaces,   extraspaces@gmail.com   ,   9876548888   , Google , SDE Intern
+
+Case Test,CASE.TEST@GMAIL.COM,9876547777,Meta,Software Engineer
+
+Null Test,nulltest@gmail.com,,,
