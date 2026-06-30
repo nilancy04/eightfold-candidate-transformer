@@ -12,7 +12,7 @@ if str(SRC) not in sys.path:
 from common import round_confidence  # noqa: E402
 from confidence import apply_confidence, field_confidence, get_source_confidence, overall_confidence  # noqa: E402
 from merger import merge_candidates  # noqa: E402
-from models import Candidate, ExtractedCandidate, SkillEntry  # noqa: E402
+from models import Candidate, EducationEntry, ExperienceEntry, ExtractedCandidate, SkillEntry  # noqa: E402
 
 
 def test_source_confidence_values() -> None:
@@ -95,6 +95,74 @@ def test_overall_confidence_in_range() -> None:
     score = overall_confidence(candidate, ["csv"])
     assert 0.0 <= score <= 1.0
     assert score == round_confidence(score)
+
+
+def test_duplicate_experience_merged_across_sources() -> None:
+    """CSV and resume with same company/title should produce one experience entry."""
+    exp = ExperienceEntry(
+        company="Sikar Infotech",
+        title="Full Stack Developer Intern",
+        start_date="2025-05",
+        end_date="2025-07",
+    )
+    csv_candidate = ExtractedCandidate(
+        data=Candidate(full_name="Dev", experience=[exp]),
+        source_name="data.csv",
+        source_type="csv",
+    )
+    resume_candidate = ExtractedCandidate(
+        data=Candidate(
+            full_name="Dev",
+            experience=[
+                ExperienceEntry(
+                    company="Sikar Infotech",
+                    title="Full Stack Developer Intern",
+                    description="Built APIs",
+                )
+            ],
+        ),
+        source_name="resume.pdf",
+        source_type="resume",
+    )
+
+    merged = merge_candidates([csv_candidate, resume_candidate])
+    assert len(merged.experience) == 1
+    assert merged.experience[0].company == "Sikar Infotech"
+    assert merged.experience[0].start_date == "2025-05"
+    assert merged.experience[0].description == "Built APIs"
+
+
+def test_duplicate_education_merged_across_sources() -> None:
+    csv_candidate = ExtractedCandidate(
+        data=Candidate(
+            full_name="Dev",
+            education=[
+                EducationEntry(
+                    institution="SRM Institute of Science and Technology",
+                    degree="Student",
+                )
+            ],
+        ),
+        source_name="data.csv",
+        source_type="csv",
+    )
+    resume_candidate = ExtractedCandidate(
+        data=Candidate(
+            full_name="Dev",
+            education=[
+                EducationEntry(
+                    institution="SRM Institute of Science and Technology",
+                    degree="B.Tech in Computer Science",
+                )
+            ],
+        ),
+        source_name="resume.pdf",
+        source_type="resume",
+    )
+
+    merged = merge_candidates([csv_candidate, resume_candidate])
+    assert len(merged.education) == 1
+    assert merged.education[0].degree == "B.Tech in Computer Science"
 
 
 def test_merge_empty_sources() -> None:

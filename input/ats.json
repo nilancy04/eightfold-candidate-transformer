@@ -1,5 +1,31 @@
 [
   {
+    "candidateName": "Nilancy Agarwal",
+    "mail": "nilancyagarwal@gmail.com",
+    "mobile": "9257603310",
+    "designation": "Full Stack Developer Intern",
+    "organization": "Sikar Infotech",
+    "skills": [
+      "ReactJS",
+      "Node.js",
+      "AWS",
+      "Go"
+    ]
+  },
+  {
+    "candidateName": "Priyam Prasad Sahoo",
+    "mail": "priyamprasad2004@gmail.com",
+    "mobile": "7684914993",
+    "designation": "Student",
+    "organization": "SRM Institute of Science and Technology",
+    "skills": [
+      "Python",
+      "Java",
+      "ReactJS",
+      "Machine Learning"
+    ]
+  },
+  {
     "candidateName": "Priya Sharma",
     "mail": "priya.sharma@gmail.com",
     "mobile": "+91 9876543210",

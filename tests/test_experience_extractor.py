@@ -27,3 +27,28 @@ def test_experience_line_with_dash_dates() -> None:
     assert entries[0].company == "Sikar Infotech"
     assert entries[0].start_date == "2025-05"
     assert entries[0].end_date == "2025-07"
+
+
+def test_experience_comma_format_with_location() -> None:
+    text = (
+        "PROFESSIONAL EXPERIENCE\n"
+        "AR/VR Consultant Intern, PMKVY 4.0 2024 – 2025 | Chennai, India\n"
+        "AI/ML Intern, Google AI-ML Program 10/2024 – 12/2024 | Remote\n"
+        "PROJECTS"
+    )
+    entries = _extract_experience(text)
+    assert len(entries) == 2
+    assert entries[0].title == "AR/VR Consultant Intern"
+    assert entries[0].company == "PMKVY 4.0"
+    assert entries[1].title == "AI/ML Intern"
+    assert entries[1].company == "Google AI/ML Program"
+
+
+def test_experience_rejects_date_as_company() -> None:
+    text = (
+        "PROFESSIONAL EXPERIENCE\n"
+        "Some Role, 2025 | Chennai, India\n"
+        "PROJECTS"
+    )
+    entries = _extract_experience(text)
+    assert entries == []
